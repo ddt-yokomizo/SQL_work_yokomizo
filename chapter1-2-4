@@ -1,0 +1,10 @@
+chapter1-2-4
+
+書籍情報テーブル(books)からtitle列とpublish列を取り出して見るsql命令ですが
+２点の誤りを指摘せよ
+
+selects title publish from books;
+
+1. 命令部が「SELECT」 ではない
+
+2. カラム指定部の間にカンマがない
