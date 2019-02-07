@@ -1,0 +1,25 @@
+chapter1-2-1
+
+書籍情報テーブル(books)からtitle列を取り出して見ましょう
+以下の空欄を埋めてSQL例文を完成させなさい。
+
+workbook=# select title from books;
+      title
+------------------
+ ハムスターの観察
+ PEAR入門
+ PHP5サンプル集
+ SQLリファレンス
+ フェレットの観察
+ XML辞典
+ JSPリファレンス
+ SQLプチブック
+ XMLリファレンス
+ SQL入門
+ PHPドリル
+ らくだの観察日記
+ あひるの観察日記
+ かえるの観察日記
+(14 rows)
+
+workbook=#
