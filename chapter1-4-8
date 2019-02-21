@@ -1,0 +1,12 @@
+chapter1-4-8
+
+以下は書籍情報テーブル(books)から価格が5000円未満の書籍情報のみを取り出すためのSQL文です
+（取り出す列はtitle,publish,price列とします）
+SQL文に含まれる誤りを２つ指摘してください
+
+select title publish price from books where price <= 5000;
+
+
+１.カラム指定の間に,がない
+
+２.5000未満ではなく「5000以下」の条件になっている。
