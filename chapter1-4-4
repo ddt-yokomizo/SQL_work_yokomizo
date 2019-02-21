@@ -1,0 +1,16 @@
+chapter1-4-4
+
+アンケート回答テーブル(quest)から年齢が３０才以上４０才未満の人の回答だけを取り出して見ましょう
+なお、取り出す列はneme , sex,prefecture列だけとする
+
+workbook=# select name,sex,prefecture from quest where age BETWEEN 30 AND 39;
+    name    | sex | prefecture
+------------+-----+------------
+ 山田太郎   | 男  | 東京都
+ 江本修子   | 女  | 東京都
+ 有木守     | 男  | 千葉県
+ 南幸一     | 男  | 神奈川県
+ 根岸亜由美 | 女  | 千葉県
+(5 rows)
+
+workbook=#
