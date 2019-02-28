@@ -1,0 +1,21 @@
+chapter1-8-4
+
+以下はアクセス記録テーブル(access_log)からアクセス日時の新しい順に10件のログデータを取り出すためのSQL命令です
+（取り出す列はpage_id ,referer,ip_address列）
+SQL文に含まれる誤りを２つ指摘してください
+
+select
+	page_id,
+	referer,
+	ip_address
+from
+	access_log
+ORDER BY
+	access_date ASC ,
+LIMIT
+	10.0
+;
+
+
+1.　アクセス日時を古い順に並び替えている
+2.　10行目から0件を取得するLIMIT句になっている（MySQL）
