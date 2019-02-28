@@ -1,0 +1,17 @@
+chapter1-9-5
+
+以下はアクセス記録テーブル(access_log)からメニューコード別のアクセス数を取得するためのSQL命令です
+SQL文に含まれる誤りを２つ指摘してください
+
+select
+	page_id,
+	SUM(*)
+from
+	access_log
+ORDER BY
+	page_id
+;
+
+
+1.　SUM関数の引数がカラム指定ではないので不正
+2.　GROUP BY　句ではなく、ORDER BYになっている
