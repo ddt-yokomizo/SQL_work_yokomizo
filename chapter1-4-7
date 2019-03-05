@@ -3,20 +3,6 @@ chapter1-4-7
 アンケート回答テーブル(quest)から感想欄がNULLではない情報だけを取り出して見ましょう
 なお、取り出す列はanswer2列だけとする
 
---選択する
-SELECT
---回答２（感想欄）列を指定
-	answer2
---どこから
-FROM
---アンケート回答テーブル(quest)から
-	quest
---条件指定
-WHERE
---感想欄がNULLではない
-	answer2 IS NOT NULL
-;
-
 workbook=# --選択する
 workbook=# SELECT
 workbook-# --回答２（感想欄）列を指定
