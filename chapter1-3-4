@@ -8,3 +8,11 @@ select all class , depart_id from employee;
 1. DISTINCT　ではなく「ALL」 なので重複なしで表示されない
 
 2. depart_idも重複なし表示になるので重複なしの役職一覧を表示できなし
+
+正しい文
+
+SELECT DISTINCT
+	class
+FROM
+	employee
+;
