@@ -8,3 +8,12 @@ selects title publish from books;
 1. 命令部が「SELECT」 ではない
 
 2. カラム指定部の間にカンマがない
+
+
+正しい文
+SELECT
+	title,
+	publish
+FROM
+	books
+;
