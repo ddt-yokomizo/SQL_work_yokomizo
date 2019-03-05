@@ -2,7 +2,19 @@ chapter1-2-3
 
 社員テーブル(employee)から社員の氏、名、役職を取り出して見ましょう
 
-workbook=# select l_name , f_name , class from employee;
+orkbook=# --選択する
+workbook=# SELECT
+workbook-# --氏 列を指定
+workbook-# l_name,
+workbook-# --名前列を指定
+workbook-# f_name,
+workbook-# --役職列を指定
+workbook-# class
+workbook-# --どこから
+workbook-# FROM
+workbook-# --社員情報テーブルから
+workbook-# employee
+workbook-# ;
  l_name | f_name |    class
 --------+--------+--------------
  相沢   | 聡     | 部長
