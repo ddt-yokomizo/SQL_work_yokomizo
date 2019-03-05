@@ -4,7 +4,17 @@ chapter1-2-2
 以下の空欄を埋めてSQL例文を完成させなさい。
 
 
-workbook=# select p_name , price from product;
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --商品名列を指定
+workbook-# p_name,
+workbook-# --価格列を指定
+workbook-# price
+workbook-# --どこから
+workbook-# FROM
+workbook-# --商品テーブルから
+workbook-# product
+workbook-# ;
     p_name    | price
 --------------+-------
  黒ボールペン |   100
