@@ -10,3 +10,14 @@ select title publish price from books where price <= 5000;
 １.カラム指定の間に,がない
 
 ２.5000未満ではなく「5000以下」の条件になっている。
+
+正しい文
+SELECT
+	title,
+	publish,
+	price
+FROM
+	books
+WHERE
+	price <= 4999
+;
