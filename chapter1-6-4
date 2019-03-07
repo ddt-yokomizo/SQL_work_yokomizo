@@ -34,7 +34,17 @@ workbook=# select * from employee;
  NI00002 | 新渡戸 | 康治   | ニトベ      | コウジ      |   1 | アシスタント | B01       |         | 2013-01-15  |       0
 (26 rows)
 
-workbook=# select * from employee where l_name = '山田' AND f_name = '奈美';
+--取得する
+SELECT
+	* --全ての列を指定
+FROM --どこから
+	employee --社員テーブル（employee)から
+WHERE --条件指定
+	l_name = '山田' --苗字が「山田」
+AND --かつ
+	f_name = '奈美' --名前が「奈美」
+;
+
   s_id   | l_name | f_name | l_name_kana | f_name_kana | sex | class | depart_id |  b_id   | last_update | retired
 ---------+--------+--------+-------------+-------------+-----+-------+-----------+---------+-------------+---------
  YA00001 | 山田   | 奈美   | ヤマダ      | ナミ        |   2 | 課長  | S01       | SA00001 | 2012-10-15  |       0
