@@ -29,7 +29,16 @@ workbook=# select * from usr;
  B200505 | 根岸   | 裕子   | ネギシ      | ユウコ      | 静岡県     | 南静岡市寺町 | 3-4-8     | 040-666-0020 | negi@wings.msn.to
 (21 rows)
 
-workbook=# select * from usr where email LIKE '%examples.com' AND prefecture = '東京都';
+workbook=# --取得する
+workbook=# SELECT
+workbook-# * --全ての列を指定
+workbook-# FROM --どこから
+workbook-# usr --ユーザテーブル（usr)から
+workbook-# WHERE --条件指定
+workbook-# email LIKE '%examples.com' --Eメールアドレスのドメインが「examples.com」
+workbook-# AND --かつ
+workbook-# prefecture = '東京都' --東京都在住
+workbook-# ;
  user_id | l_name | f_name | l_name_kana | f_name_kana | prefecture |    city    | o_address |     tel      |      email
 ---------+--------+--------+-------------+-------------+------------+------------+-----------+--------------+------------------
  A200404 | 小野   | 雄二   | オノ        | ユウジ      | 東京都     | 東京市南町 | 3-2-6     | 040-111-0004 | ono@examples.com
