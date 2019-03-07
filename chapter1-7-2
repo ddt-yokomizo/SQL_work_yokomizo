@@ -29,7 +29,20 @@ workbook=# select * from usr;
  B200505 | 根岸   | 裕子   | ネギシ      | ユウコ      | 静岡県     | 南静岡市寺町 | 3-4-8     | 040-666-0020 | negi@wings.msn.to
 (21 rows)
 
-workbook=# select l_name,f_name,prefecture from usr where prefecture IN ('東京都','神奈川県','千葉県') ORDER BY l_name ASC , f_name ASC;
+--取得する
+SELECT
+	l_name,		--苗字列を指定
+	l_name,		--名前列を指定
+	prefecture	--所在地列を指定
+FROM			--どこから
+	usr			--ユーザテーブル（usr)から
+WHERE												--条件指定
+	prefecture IN ('東京都','神奈川県','千葉県')		--東京都、神奈川県、千葉県のいずれか
+ORDER BY 
+	l_name ASC, --苗字を昇順(文字コードで)
+	f_name ASC --名前を昇順(文字コードで)
+;
+
  l_name | f_name | prefecture
 --------+--------+------------
  上原   | 幸一   | 神奈川県
