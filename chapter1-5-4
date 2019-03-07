@@ -34,7 +34,21 @@ workbook=# select * from employee;
  NI00002 | 新渡戸 | 康治   | ニトベ      | コウジ      |   1 | アシスタント | B01       |         | 2013-01-15  |       0
 (26 rows)
 
-workbook=# select l_name , f_name from employee where l_name_kana LIKE 'ア%';
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --苗字列を指定
+workbook-# l_name,
+workbook-# --名前列を指定
+workbook-# f_name
+workbook-# --どこから
+workbook-# FROM
+workbook-# --社員情報テーブル（employee)から
+workbook-# employee
+workbook-# --条件指定
+workbook-# WHERE
+workbook-# --氏(カナ)が「ア」で始まる
+workbook-# l_name_kana LIKE 'ア%'
+workbook-# ;
  l_name | f_name
 --------+--------
  相沢   | 聡
