@@ -3,6 +3,7 @@ chapter1-5-3
 書籍情報テーブル（books)から書名が「SQL●●」である情報だけを取り出して見ましょう
 なお、取り出す列はisbn,title,price列のみとする
 
+
 workbook=# select * from books;
        isbn        |      title       | price |   publish    | publish_date | category_id
 -------------------+------------------+-------+--------------+--------------+-------------
@@ -22,7 +23,23 @@ workbook=# select * from books;
  4-0010-0000-7     | かえるの観察日記 |   800 | 山田出版     | 2013-01-15   | H9999
 (14 rows)
 
-workbook=# select isbn,title,price from books where title LIKE 'SQL__';
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --書籍番号列を指定
+workbook-# isbn,
+workbook-# --タイトル列を指定
+workbook-# title,
+workbook-# --価格列を指定
+workbook-# price
+workbook-# --どこから
+workbook-# FROM
+workbook-# --書籍情報テーブル（books)から
+workbook-# books
+workbook-# --条件指定
+workbook-# WHERE
+workbook-# --タイトルが「SQL●●」
+workbook-# title LIKE 'SQL__'
+workbook-# ;
        isbn        |  title  | price
 -------------------+---------+-------
  4-0010-0000-9     | SQL入門 |  5500
