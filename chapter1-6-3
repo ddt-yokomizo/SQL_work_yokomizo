@@ -3,6 +3,17 @@ chapter1-6-3
 アンケート回答テーブル（quest)から感想欄が空ではないものを取り出して見ましょう
 なお、取り出す列は answer2列とする
 
+--取得する
+SELECT
+	answer2 --回答２(感想)列を指定
+FROM --どこから
+	quest --アンケート回答テーブル(quest)から
+WHERE --条件指定
+	sex = '女' --性別が女性
+AND --かつ
+	age BETWEEN 20 AND 29 --年齢が２０代
+;
+
 workbook=# select * from quest ;
  id |    name    |    name_kana     | sex | prefecture | age | answer1 |         answer2          |      answered
 ----+------------+------------------+-----+------------+-----+---------+--------------------------+---------------------
