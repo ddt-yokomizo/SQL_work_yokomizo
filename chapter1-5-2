@@ -24,7 +24,19 @@ workbook=# select * from quest;
  16 | 根岸亜由美 | ネギシアユミ     | 女  | 千葉県     |  34 |       3 | 絵がかわいい。           | 2013-02-03 21:11:17
 (16 rows)
 
-workbook=# select name from quest where name NOT LIKE '%子';
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --名前列を指定
+workbook-# name
+workbook-# --どこから
+workbook-# FROM
+workbook-# --アンケート回答テーブル(quest)から
+workbook-# quest
+workbook-# --条件指定
+workbook-# WHERE
+workbook-# --名前が子で終わらない
+workbook-# name NOT LIKE '%子'
+workbook-# ;
     name
 ------------
  山田太郎
