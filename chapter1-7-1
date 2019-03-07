@@ -22,7 +22,18 @@ workbook=# select * from books;
  4-0010-0000-7     | かえるの観察日記 |   800 | 山田出版     | 2013-01-15   | H9999
 (14 rows)
 
-workbook=# select title,price from books where price BETWEEN 2500 AND 3000 ORDER BY price ASC;
+--取得する
+SELECT
+	title, --書籍タイトル列を指定
+	price --価格列を指定
+FROM --どこから
+	books --書籍情報テーブル(books)から
+WHERE --条件指定
+	price BETWEEN 2500 AND 3000 --価格が2500〜3000円の範囲
+ORDER BY 
+	price ASC --価格が安い順で並び替え
+;
+
       title      | price
 -----------------+-------
  SQLリファレンス |  2500
