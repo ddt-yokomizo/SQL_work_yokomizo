@@ -23,6 +23,16 @@ workbook=# select * from quest;
  16 | 根岸亜由美 | ネギシアユミ     | 女  | 千葉県     |  34 |       3 | 絵がかわいい。           | 2013-02-03 21:11:17
 (16 rows)
 
+--取得する
+SELECT
+	sex,			--性別列を指定
+	MAX(age),		--年齢の最大値を集計
+	MIN(age)		--年齢の最小値を集計
+FROM				--どこから
+	quest			--アンケート回答情報テーブル（quest)から
+GROUP BY sex 		--性別でグルーピング
+;
+
 workbook=# select sex , MAX(age),MIN(age) from quest GROUP BY sex;
  sex | max | min
 -----+-----+-----
