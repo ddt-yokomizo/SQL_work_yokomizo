@@ -26,14 +26,19 @@ books
  4-0010-0000-7     | かえるの観察日記 |   800 | 山田出版     | 2013-01-15   | H9999
 (14 rows)
 
-workbook=# SELECT
-title,
-publish_date
-FROM
-books
-ORDER BY
-publish_date DESC
-LIMIT 5 OFFSET 2;
+
+--取得する
+SELECT
+	title,			--タイトル列を指定
+	publish_date	--刊行日列を指定
+FROM				--どこから
+	books		--書籍情報テーブル（books)から
+ORDER BY 
+	publish_date DESC		--刊行日が新しい順
+	LIMIT 5 	--5件文を指定
+	OFFSET 2	--3行目から
+;
+
       title       | publish_date
 ------------------+--------------
  PHPドリル        | 2013-01-14
