@@ -25,7 +25,18 @@ workbook-# ;
  16 | 根岸亜由美 | ネギシアユミ     | 女  | 千葉県     |  34 |       3 | 絵がかわいい。           | 2013-02-03 21:11:17
 (16 rows)
 
-workbook=# select name , answer1 , answer2 from quest ORDER BY answered DESC LIMIT 10;
+--取得する
+SELECT
+	name,			--名前列を指定
+	answer1,		--評価列を指定
+	answer2			--感想列を指定
+FROM				--どこから
+	quest			--アンケート回答テーブル（quest)から
+ORDER BY 
+	answered DESC	--貸し出し日が新しい順
+LIMIT 10 			--先頭から10件を指定
+;
+
     name    | answer1 |     answer2
 ------------+---------+------------------
  根岸亜由美 |       3 | 絵がかわいい。
