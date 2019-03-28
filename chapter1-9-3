@@ -18,7 +18,17 @@ workbook=# select * from sales;
  K0002 | 2012-11 |   10124
 (11 rows)
 
-workbook=# select s_id,SUM(s_value) from sales GROUP BY s_id;
+
+--取得する
+SELECT
+	s_id,			--店舗ID列を指定
+	SUM(s_value)	--売り上げ累計を集計
+FROM				--どこから
+	sales			--月間売り上げテーブル(sales)から
+GROUP BY			--グルーピング
+	s_id 			--店舗IDでグルーピング
+;
+
  s_id  |  sum
 -------+-------
  K0002 | 20580
