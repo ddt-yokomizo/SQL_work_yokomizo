@@ -21,7 +21,16 @@ workbook=# select * from books;
  4-0010-0000-7     | かえるの観察日記 |   800 | 山田出版     | 2013-01-15   | H9999
 (14 rows)
 
-workbook=# select publish , MAX(price) from books GROUP BY publish;
+--取得する
+SELECT
+	publish,		--出版社列を指定
+	MAX(price)		--最高価格を集計
+FROM				--どこから
+	books			--書籍情報テーブル(books)から
+GROUP BY			--グルーピング
+	publish 		--出版社でグルーピング
+;
+
    publish    | max
 --------------+------
  日経BP       | 3200
