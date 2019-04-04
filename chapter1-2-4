@@ -11,9 +11,9 @@ selects title publish from books;
 
 
 正しい文
-SELECT
-	title,
-	publish
-FROM
-	books
+SELECT		--取得する
+	title,	--タイトル列を取得
+	publish	--出版社列を取得
+FROM		--どこから
+	books	--書籍情報テーブル(books)から
 ;
