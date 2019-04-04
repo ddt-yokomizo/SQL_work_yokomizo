@@ -12,12 +12,12 @@ select title publish price from books where price <= 5000;
 ２.5000未満ではなく「5000以下」の条件になっている。
 
 正しい文
-SELECT
-	title,
-	publish,
-	price
-FROM
-	books
-WHERE
-	price <= 4999
+SELECT			--取得する
+	title,		--タイトル列を取得
+	publish,	--出版社列を取得
+	price		--価格列を取得
+FROM			--どこから
+	books		--書籍情報テーブル(books)から
+WHERE			--条件指定
+	price <= 4999	--価格が5000円未満
 ;
