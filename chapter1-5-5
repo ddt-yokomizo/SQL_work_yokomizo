@@ -13,10 +13,10 @@ select title, from books where publish LIKE '_社';
 2.「●社」で終わる出版社(●は１文字)の情報を取り出す条件になっている
 
 正しいSQL文
-SELECT
-	title
-FROM
-	books
-WHERE
-	publish LIKE '%社'
+SELECT			--取得する
+	title		--タイトル列を取得
+FROM			--どこから
+	books		--書籍情報テーブル(books)から
+WHERE			--条件指定
+	publish LIKE '%社'	--ワイルドカードを用いて「社」で終わる出版社を指定
 ;
