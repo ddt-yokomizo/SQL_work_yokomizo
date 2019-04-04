@@ -11,8 +11,8 @@ select all class , depart_id from employee;
 
 正しい文
 
-SELECT DISTINCT
-	class
-FROM
-	employee
+SELECT DISTINCT		--重複なしで取得
+	class			--役職列を取得
+FROM				--どこから
+	employee		--社員テーブル(employee)から
 ;
