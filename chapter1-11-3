@@ -35,7 +35,7 @@ workbook=#
 
 SELECT			--取得する
 	(l_name || f_name) AS 利用者名,				--苗字列と名前列の結合テキストをを別名「利用者名」として取得 
-	prefecture || city || o_address AS 住所		--都道府県列と市町村列と番地列の結合テキスト を別名"住所"として取得
+	(prefecture || city || o_address) AS 住所		--都道府県列と市町村列と番地列の結合テキスト を別名"住所"として取得
 FROM 			--どこから
 	usr 		--ユーザテーブル(usr)から
 ;
