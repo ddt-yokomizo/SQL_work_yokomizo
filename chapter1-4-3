@@ -33,13 +33,17 @@ workbook-# ;
  B200505 | 根岸   | 裕子   | ネギシ      | ユウコ      | 静岡県     | 南静岡市寺町 | 3-4-8     | 040-666-0020 | negi@wings.msn.to
 (21 rows)
 
-workbook=# SELECT
-workbook-# l_name , f_name , email
-workbook-# FROM
-workbook-# usr
-workbook-# WHERE
-workbook-# prefecture <> '東京都'
-workbook-# ;
+
+SELECT				--取得する
+	l_name,			--苗字列を指定 
+	f_name,			--名前列を指定
+	email			--メールアドレス列を指定
+FROM				--どこから
+	usr				--ユーザーテーブル(usr)から
+WHERE				--条件指定
+	prefecture <> '東京都'			--住所列(都道府県)が東京ではない
+;
+
  l_name | f_name |        email
 --------+--------+----------------------
  井上   | 一郎   | inoue@wings.msn.to
