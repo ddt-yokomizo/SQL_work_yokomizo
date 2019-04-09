@@ -1,0 +1,50 @@
+chapter1-9-5
+
+以下はアクセス記録テーブル(access_log)からメニューコード別のアクセス数を取得するためのSQL命令です
+SQL文に含まれる誤りを２つ指摘してください
+
+select
+	page_id,
+	SUM(*)
+from
+	access_log
+ORDER BY
+	page_id
+;
+
+
+1.　SUM関数ではなくCOUNT関数でレコード件数を取得しなければならない
+2.　GROUP BY　句ではなく、ORDER BYになっている
+
+【正しい文】
+
+--取得する
+SELECT
+	page_id,		--ページID列を指定
+	COUNT(*)		--アクセス数の累計を集計
+FROM				--どこから
+	access_log		--アクセス記録テーブル(access_log)から
+GROUP BY			--グルーピング
+	page_id 		--ページID列でグルーピング
+;
+
+
+ page_id | count
+---------+-------
+ B0003   |     2
+ D0003   |     1
+ C0001   |    14
+ B0004   |     2
+ B0001   |     6
+ A0001   |    77
+ C0005   |     2
+ D0002   |     1
+ C0003   |     2
+ C0002   |     2
+ B0002   |     2
+ D0004   |     1
+ D0001   |    12
+ C0004   |     2
+(14 rows)
+
+workbook=#

@@ -1,0 +1,40 @@
+chapter1-6-5
+
+以下は書籍情報テーブル(books)から出版社列が「秀和システム」または「日経BP」であり、かつ価格が３０００円未満の書籍を取り出すためのSQL命令ですが
+SQL文に含まれる誤りを２つ指摘してください
+
+select
+	isbn,
+	title
+from
+	books
+where
+	publish = '秀和システム'
+	AND
+	publish = '日経BP'
+	OR
+	price < 3000
+;
+
+
+1.ANDとORの記載位置が逆
+2.３つの条件を連結しているため（）で同じレベルの条件をくくる
+
+正しい文
+
+--取得する
+SELECT
+	isbn, --書籍情報列を指定
+	title --書籍タイトル列を指定
+FROM --どこから
+	books --書籍情報テーブル(books)から
+WHERE --条件指定
+	--出版社列が「秀和システム」または「日経BP」
+	(
+	publish = '秀和システム'
+	OR
+	publish = '日経BP'
+	)
+	AND --かつ
+	price < 3000 --価格が３０００円未満
+;

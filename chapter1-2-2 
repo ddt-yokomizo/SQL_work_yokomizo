@@ -1,0 +1,30 @@
+chapter1-2-2
+
+商品テーブル(product)から商品名と単価を取り出して見ましょう
+以下の空欄を埋めてSQL例文を完成させなさい。
+
+
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --商品名列を指定
+workbook-# p_name,
+workbook-# --価格列を指定
+workbook-# price
+workbook-# --どこから
+workbook-# FROM
+workbook-# --商品テーブルから
+workbook-# product
+workbook-# ;
+    p_name    | price
+--------------+-------
+ 黒ボールペン |   100
+ 赤ボールペン |   100
+ 電卓         |   600
+ トナー黒     |  1000
+ トナー赤     |  1000
+ 机           | 15000
+ 椅子         | 10000
+ マウスパッド |  1500
+(8 rows)
+
+workbook=#

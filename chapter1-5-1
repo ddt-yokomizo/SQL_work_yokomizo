@@ -1,0 +1,38 @@
+chapter1-5-1
+
+著者情報テーブル(author)から名前が山田で始まる著者の情報だけを取り出して見ましょう
+なお、取り出す列は全列とする
+
+
+workbook=# select * from author;
+ author_id |   name   |   name_kana    |   birth
+-----------+----------+----------------+------------
+ Y0001     | 山田愛子 | ヤマダアイコ   | 1970-04-06
+ S0001     | 佐藤一郎 | サトウイチロウ | 1973-05-06
+ T0001     | 田中太郎 | タナカタロウ   | 1975-11-01
+ M0001     | 守口靖男 | モリグチヤスオ | 1980-12-16
+ Y0002     | 山田祥寛 | ヤマダヨシヒロ | 1960-12-04
+ A0001     | 有吉晴美 | アリヨシハルミ | 1985-02-15
+ K0001     | 川中智樹 | カワナカトモキ | 1986-03-12
+(7 rows)
+
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --全ての列を指定
+workbook-# *
+workbook-# --どこから
+workbook-# FROM
+workbook-# --著者情報テーブル(author)から
+workbook-# author
+workbook-# --条件指定
+workbook-# WHERE
+workbook-# --名前が山田で始まる
+workbook-# name LIKE '山田%'
+workbook-# ;
+ author_id |   name   |   name_kana    |   birth
+-----------+----------+----------------+------------
+ Y0001     | 山田愛子 | ヤマダアイコ   | 1970-04-06
+ Y0002     | 山田祥寛 | ヤマダヨシヒロ | 1960-12-04
+(2 rows)
+
+workbook=#

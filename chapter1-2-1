@@ -3,7 +3,15 @@ chapter1-2-1
 書籍情報テーブル(books)からtitle列を取り出して見ましょう
 以下の空欄を埋めてSQL例文を完成させなさい。
 
-workbook=# select title from books;
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --タイトル列を指定
+workbook-# title
+workbook-# --どこから
+workbook-# FROM
+workbook-# --書籍情報テーブルから
+workbook-# books
+workbook-# ;
       title
 ------------------
  ハムスターの観察

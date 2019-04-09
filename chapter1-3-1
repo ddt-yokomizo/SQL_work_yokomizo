@@ -1,0 +1,15 @@
+chapter1-3-1
+
+アンケート回答テーブル(quest)から都道府県名を重複のない形で取り出して見ましょう
+
+workbook=# select distinct prefecture from quest;
+ prefecture
+------------
+ 茨城県
+ 千葉県
+ 埼玉県
+ 神奈川県
+ 東京都
+(5 rows)
+
+workbook=#

@@ -1,0 +1,17 @@
+chapter1-3-2
+
+アクセス記録テーブル(access_log)からリンク元URLを重複のない形で取り出して見ましょう
+
+workbook=# select distinct referer from access_log;
+          referer
+---------------------------
+ http://wings.msn.to/hamu/
+
+ http://wings.msn.to/kame/
+ http://wings.msn.to/tori/
+ http://wings.msn.to/inu/
+ http://wings.msn.to/neko/
+ http://wings.msn.to/saru/
+(7 rows)
+
+workbook=#

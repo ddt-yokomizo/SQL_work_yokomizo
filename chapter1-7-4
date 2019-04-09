@@ -1,0 +1,32 @@
+chapter1-7-4
+
+以下はアクセス記録テーブル(access_log)から2013年1月分のアクセスログrefer,ip_address列について降順で取り出すためのSQL命令ですが
+SQL文に含まれる誤りを２つ指摘してください
+
+select
+	*
+from
+	access_log
+where
+	access_date IN ('2013-01-01','2013-01-31') 
+ORDER BY
+	referer ,
+	ip_address DESC
+;
+
+
+1.　アクセスログが2013-01-01 または　2013-01-31　の情報しか抽出できない
+2.　並び替え制御部　refer の後に　DESC　が記載されていない
+
+正しい文
+--取得する
+SELECT
+	*				--全列を指定
+FROM				--どこから
+	access_log		--アクセス記録テーブル(access_log)から
+WHERE				--条件指定
+	access_date BETWEEN '2013-01-01' AND '2013-01-31'	--2013年1月分の
+ORDER BY 
+	referer DESC,			--参照元を降順
+	ip_address DESC		--IPアドレスを降順
+;
