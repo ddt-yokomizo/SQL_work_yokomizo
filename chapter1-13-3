@@ -139,6 +139,7 @@ workbook=#
 
 SELECT				--取得する
 	referer ,		--リンク元列を指定 
+	COUNT(*) AS アクセス数,		--リンク元ごとのアクセス数列を集計し別名「アクセス数」として指定 
 	CASE			--条件分岐開始
 		WHEN COUNT(*) < 10 THEN 'C'	--リンク元ごとのアクセス数を集計し「10件」未満のものは「C」と出力
 		WHEN COUNT(*) >= 10 AND COUNT(*) < 50 THEN 'B'	--リンク元ごとのアクセス数を集計し「10件以上50件未満」のものは「B」と出力
@@ -155,14 +156,14 @@ ORDER BY			--ソート
 	COUNT(*) DESC	--リンク元ごとのアクセス数を多い順にソート
 ;
 
-          referer          | ランク
----------------------------+--------
- http://wings.msn.to/hamu/ | A
- http://wings.msn.to/neko/ | B
- http://wings.msn.to/saru/ | C
- http://wings.msn.to/kame/ | C
- http://wings.msn.to/tori/ | C
- http://wings.msn.to/inu/  | C
+          referer          | アクセス数 | ランク
+---------------------------+------------+--------
+ http://wings.msn.to/hamu/ |        100 | A
+ http://wings.msn.to/neko/ |         11 | B
+ http://wings.msn.to/saru/ |          4 | C
+ http://wings.msn.to/kame/ |          3 | C
+ http://wings.msn.to/tori/ |          3 | C
+ http://wings.msn.to/inu/  |          3 | C
 (6 rows)
 
 workbook=#
