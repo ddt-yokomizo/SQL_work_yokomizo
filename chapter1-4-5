@@ -1,0 +1,32 @@
+chapter1-4-5
+
+アンケート回答テーブル(quest)から回答日時が「2013年1月1日」以降の情報だけを取り出して見ましょう
+なお、取り出す列はneme , answer1 ,answer2列だけとする
+
+
+
+workbook=# --選択する
+workbook=# SELECT
+workbook-# --名前列を指定
+workbook-# name,
+workbook-# --回答１列を指定
+workbook-# answer1,
+workbook-# --回答２列を指定
+workbook-# answer2
+workbook-# --どこから
+workbook-# FROM
+workbook-# --アンケート回答テーブル(quest)から
+workbook-# quest
+workbook-# --条件指定
+workbook-# WHERE
+workbook-# --回答日時が「2013年1月1日」以降
+workbook-# answered >= '2013-01-01'
+workbook-# ;
+    name    | answer1 |     answer2
+------------+---------+------------------
+ 森本雄二   |       1 |
+ 西島泰治   |       3 | 読みやすいです。
+ 根岸亜由美 |       3 | 絵がかわいい。
+(3 rows)
+
+workbook=#
