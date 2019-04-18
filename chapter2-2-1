@@ -68,7 +68,7 @@ SELECT							--取得する
 	COUNT(rent.*)					--貸出記録テーブルの集計列を指定
 FROM				--どこから
 	rental AS rent		--貸出記録テーブル(rental)
-RIGHT JOIN			--内部結合
+RIGHT JOIN			--右外部結合
 	usr		--ユーザテーブル(usr)か
 ON					--結合キー
 	rent.user_id = usr.user_id	--ユーザIDを結合キーに
