@@ -48,25 +48,21 @@ workbook=# select * from depart;
 workbook=#
 
 SELECT							--取得する
-	MAX(d.depart_name) AS 部署名,		--部署名列はグループ化キーにする必要ないので集約列にして回避>別名「部署名」として指定
-	COUNT(e.*)					--貸出記録テーブルの集計列を指定
+	d.depart_id AS 部署ID,		--部署名列を別名「部署ID」として指定
+	d.depart_name AS 部署名		--部署名列を別名「部署名」として指定
 FROM				--どこから
 	depart AS d		--所属部署テーブル(rental)
 LEFT JOIN			--左外部結合
 	employee AS e		--社員情報テーブル(employee)
 ON					--結合キー
 	d.depart_id = e.depart_id	--ユーザIDを結合キーに
-GROUP BY			--グルーピング
-	d.depart_id		--部署IDでグルーピング
+WHERE
+	e.depart_id IS NULL
 ;
 
-   部署名   | count
-------------+-------
- 第二営業部 |     0
- 第一営業部 |     7
- 経営企画部 |     6
- 人事部     |     5
- 総務部     |     6
-(5 rows)
+ 部署id |   部署名
+--------+------------
+ E02    | 第二営業部
+(1 row)
 
 workbook=#
