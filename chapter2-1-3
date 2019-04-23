@@ -31,7 +31,7 @@ workbook=# select * from sales;
 workbook=#
 
 SELECT				--取得する
-	shop.s_name,		--ショップテーブルの店舗名列を指定
+	MAX(shop.s_name) AS 店舗名　,		--グルーピングキーを店舗IDに絞るため店舗名列を集計列に変換
 	SUM(sales.s_value)		--月間売り上げテーブルの価格列の合計を指定
 FROM				--どこから
 	shop		--店舗テーブル(shop)
@@ -42,12 +42,12 @@ ON					--結合キー
 WHERE				--条件指定
 	sales.s_date BETWEEN '2012-01-01' AND '2012-12-31'	--日付が2012年
 GROUP BY			--グルーピング
-	shop.s_name		--ショップテーブルの店舗名列でグルーピング
+	shop.s_id		--ショップテーブルの店舗ID列でグルーピング
 ORDER BY			--ソート
 	SUM(sales.s_value) ASC	--価格列の合計値を昇順
 ;
 
-    s_name    |  sum
+   店舗名　   |  sum
 --------------+-------
  三吉町南店   | 12032
  東桜町店     | 19836
