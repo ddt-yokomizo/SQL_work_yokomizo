@@ -25,19 +25,19 @@ workbook=# select * from menu;
 workbook=#
 
 SELECT				--取得する
-	chil.title AS タイトル,		--タイトル列を指定
-	prt.title AS 親タイトル	--タイトル列を指定
+	mc.title AS メニュー,		--タイトル列を指定
+	mn.title AS 親メニュー	--タイトル列を指定
 FROM				--どこから
-	menu AS chil	--メニューテーブル(menu) > 別名 chil(元mc)
+	menu AS mc	--メニューテーブル(menu)
 INNER JOIN			--内部結合
-	menu AS prt	--メニューテーブル(menu) > 別名 prt(元mn)
+	menu AS mn	--メニューテーブル(menu)
 ON					--結合キー
-	chil.parent = prt.page_id	--ページIDと親ページIDを結合キーに
+	mc.parent = mn.page_id	--ページIDと親ページIDを結合キーに
 ORDER BY			--ソート
-	chil.page_id ASC		--ページIDを昇順
+	mc.page_id ASC		--ページIDを昇順
 ;
 
-        タイトル        |       親タイトル
+        メニュー        |       親メニュー
 ------------------------+------------------------
  WINGSについて          | ホーム
  WINGSの歴史            | WINGSについて
