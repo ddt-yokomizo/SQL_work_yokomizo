@@ -65,7 +65,7 @@ FROM				--どこから
 	quest AS q		--アンケート回答テーブル(quest)から
 WHERE				--条件指定
 	q.sex = '女'		--女のみ
-UNION ALL			--和集合(重複なし)
+UNION ALL			--和集合(重複あり)
 SELECT				--取得する
 	(e.l_name_kana || e.f_name_kana)		--氏名(カナ)を指定
 FROM				--どこから
