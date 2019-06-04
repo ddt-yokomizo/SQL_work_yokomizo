@@ -1,0 +1,41 @@
+chapter3−1−3
+
+所属部署テーブル(depart)に対して
+以下の内容で新規データをINSERTしてみましょう
+
+所属部署コード	E03
+所属部署名	第三営業部
+
+workbook=# select * from  depart;
+ depart_id | depart_name
+-----------+-------------
+ S01       | 経営企画部
+ E01       | 第一営業部
+ E02       | 第二営業部
+ J01       | 人事部
+ S02       | 総務部
+(5 rows)
+
+workbook=#
+
+INSERT INTO	--挿入する
+	depart	--所属部署テーブル(depart)
+VALUES		--値を指定
+	(
+	'E03',	--所属部署コード
+	'第三営業部'		--所属部署名
+	)
+;
+
+workbook=# select * from  depart;
+ depart_id | depart_name
+-----------+-------------
+ S01       | 経営企画部
+ E01       | 第一営業部
+ E02       | 第二営業部
+ J01       | 人事部
+ S02       | 総務部
+ E03       | 第三営業部
+(6 rows)
+
+workbook=#
