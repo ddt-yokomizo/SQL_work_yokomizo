@@ -1,0 +1,52 @@
+chapter3−2−4
+
+次は
+社員テーブル(employee)に対して
+以下の内容で新規データをINSERTするクエリですが
+2点の誤りがあります。
+指摘してください
+
+社員コード	WA00001
+社員名(氏)	和田
+所属部署コード	J01
+最終更新日	(今日の日付)
+
+INSERT INTO
+	employee
+	(
+	s_id
+	l_name
+	depart_id
+	last_update
+	)
+VALUE
+	(
+	'WA00001',
+	'和田',
+	'J01',
+	CURRENT_DATE
+	)
+;
+
+1.カラム指定の間にカンマ,がない
+2.値を指定する句がVALUESではなくVALUEになっている
+
+
+【正しいクエリ】
+
+INSERT INTO	--挿入する
+	employee	--社員テーブル(employee)
+	(
+	s_id,	--社員コード
+	l_name,	--社員名(氏)
+	depart_id,	--所属部署コード	
+	last_update　--最終更新日
+	)
+VALUES	--値を指定
+	(
+	'WA00001',	--
+	'和田',	--社員名(氏)
+	'J01',	--所属部署コード	
+	CURRENT_DATE	--最終更新日
+	)
+;
