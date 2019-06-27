@@ -52,6 +52,24 @@ SET
 	)
 ;
 
+
+update books set title = rtrim(title, (SELECT category_name FROM category WHERE books.category_id = category.category_id));
+select rtrim(title, (SELECT category_name FROM category WHERE books.category_id = category.category_id)) from books ;
+UPDATE books SET title = (title || (SELECT category_name FROM category WHERE books.category_id = category.category_id)) ;
+
+UPDATE books SET title = (title || (SELECT category_name FROM category t1 WHERE EXISTS(select t2.category_name from category t2 where books.category_id = t1.category_id)));
+UPDATE books SET title = (title || (SELECT category_name FROM category t1) WHERE EXISTS(select t2.category_name from category t2 where books.category_id = t1.category_id);
+
+
+UPDATE books SET title = (title || (SELECT category_name FROM category t1 WHERE EXISTS(select t2.category_name from category t2 where books.category_id = t1.category_id)));
+
+
+select title from books where EXISTS(SELECT category_name FROM category WHERE books.category_id = category.category_id);
+
+
+
+UPDATE books SET title =  (title ||(SELECT category_name where EXISTS(SELECT category_name FROM category WHERE books.category_id = category.category_id);
+
 workbook=# select * from books;
        isbn        |         title          | price |   publish    | publish_date | category_id
 -------------------+------------------------+-------+--------------+--------------+-------------
