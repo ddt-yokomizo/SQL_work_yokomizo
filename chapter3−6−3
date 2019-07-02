@@ -37,55 +37,58 @@ workbook=# select * from category;
 workbook=#
 
 UPDATE --更新する
-	books --書籍情報テーブル
+	books  --書籍情報テーブル
 SET
 	title --書名を更新
 	= (title ||		--書名と以下を結合
+ 		(
+			SELECT 		--サブクエリ
+				category_name	--カテゴリ名を取得
+			FROM				--どこから
+				category		--カテゴリテーブル
+			WHERE 				--抽出条件
+			books.category_id = category.category_id	--カテゴリテーブルと書籍情報テーブルのカテゴリIDが同じ
+		)
+	) 
+WHERE 	--条件指定
+	category_id		--カテゴリIDが
+	IN 				--以下のサブクエリに含まれる
 	(
-	SELECT 	--サブクエリ
-		category_name	--カテゴリ名を取得
-	FROM				--どこから
-		category		--カテゴリテーブルから
-	WHERE				--条件指定
-		books.category_id = category.category_id	--カテゴリIDが同じデータ
-	)
+		SELECT		--サブクエリ
+			category_id		--カテゴリIDを取得
+		FROM 				--どこから
+			books 			--書籍情報テーブル
+		WHERE				--条件指定
+			EXISTS			--以下の相関サブクエリに含まれる
+			(
+				SELECT 		--相関サブクエリ
+					category_name	--カテゴリ名を取得
+				FROM 				--どこから
+					category 		--カテゴリテーブル
+				WHERE 				--条件指定
+					books.category_id = category.category_id	--カテゴリテーブルと書籍情報テーブルのカテゴリIDが同じ
+			)
 	)
 ;
 
-
-update books set title = rtrim(title, (SELECT category_name FROM category WHERE books.category_id = category.category_id));
-select rtrim(title, (SELECT category_name FROM category WHERE books.category_id = category.category_id)) from books ;
-UPDATE books SET title = (title || (SELECT category_name FROM category WHERE books.category_id = category.category_id)) ;
-
-UPDATE books SET title = (title || (SELECT category_name FROM category t1 WHERE EXISTS(select t2.category_name from category t2 where books.category_id = t1.category_id)));
-UPDATE books SET title = (title || (SELECT category_name FROM category t1) WHERE EXISTS(select t2.category_name from category t2 where books.category_id = t1.category_id);
-
-
-UPDATE books SET title = (title || (SELECT category_name FROM category t1 WHERE EXISTS(select t2.category_name from category t2 where books.category_id = t1.category_id)));
-
-
-select title from books where EXISTS(SELECT category_name FROM category WHERE books.category_id = category.category_id);
-
-
-
-UPDATE books SET title =  (title ||(SELECT category_name where EXISTS(SELECT category_name FROM category WHERE books.category_id = category.category_id);
+UPDATE books SET title = (title || (SELECT category_name FROM category WHERE books.category_id = category.category_id)) WHERE category_id IN (select category_id from books where EXISTS(SELECT category_name FROM category WHERE books.category_id = category.category_id));
 
 workbook=# select * from books;
        isbn        |         title          | price |   publish    | publish_date | category_id
 -------------------+------------------------+-------+--------------+--------------+-------------
+ 4-0010-0000-7     | かえるの観察日記       |   736 | WINGS出版    | 2013-01-15   | H9999
+ 4-0010-0000-6     | あひるの観察日記       |   644 | WINGS出版    | 2012-11-15   | A9999
+ 4-0010-0000-0     | ハムスターの観察       |   828 | WINGS出版    | 2010-11-01   | XXXXX
+ 4-8833-0000-2     | SQLプチブック          |  1325 | 日経BP       | 2010-11-30   | XXXXX
  4-7981-0959-2     | PEAR入門PHP            |  2760 | 翔泳社       | 2012-09-08   | P1111
  4-7980-0945-8     | PHP5サンプル集PHP      |  2760 | 秀和システム | 2012-11-01   | P1111
  4-7981-0722-0     | XML辞典XML             |  3036 | 翔泳社       | 2011-09-16   | X3333
  4-7980-0522-3     | JSPリファレンスJava    |  1656 | 秀和システム | 2010-04-19   | J4444
- 4-0010-0000-0     | ハムスターの観察未分類 |   828 | WINGS出版    | 2010-11-01   | Z9999
  4-0010-0000-4     | フェレットの観察未分類 |   920 | WINGS出版    | 2012-10-26   | Z9999
  4-0010-0000-9     | SQL入門SQL             |  5060 | WINGS出版    | 2012-10-30   | S2222
  4-0010-0000-1     | PHPドリルPHP           |  4692 | WINGS出版    | 2013-01-14   | P1111
  4-0010-0000-5     | らくだの観察日記未分類 |  1012 | WINGS出版    | 2012-12-24   | Z9999
- 4-0010-0000-6     |                        |   644 | WINGS出版    | 2012-11-15   | A9999
- 4-0010-0000-7     |                        |   736 | WINGS出版    | 2013-01-15   | H9999
  4-8833-0000-1     | SQLリファレンスSQL     |  2070 | 日経BP       | 2013-02-15   | S2222
- 4-8833-0000-2     | SQLプチブックSQL       |  1325 | 日経BP       | 2010-11-30   | S2222
  4-8833-0000-3     | XMLリファレンスXML     |  2650 | 日経BP       | 2012-11-24   | X3333
  4-8833-0000-4     | SQLミニSQL             |   828 | 日経BP       | 2011-03-22   | S2222
 (15 rows)
