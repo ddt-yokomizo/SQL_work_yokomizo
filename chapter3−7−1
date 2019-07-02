@@ -40,6 +40,8 @@ DELETE FROM	--削除する
 	rental --貸し出し記録テーブル(rental)
 WHERE		--条件指定
 	rental_date <= '2011-12-31'	--2011年12月31日
+	AND							--かつ
+	returned = '1'				--返却済み
 ;
 
 workbook=# select * from rental;
