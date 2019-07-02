@@ -50,7 +50,7 @@ workbook=#
 DELETE FROM	--削除する
 	books --書籍情報テーブル(books)
 WHERE		--条件指定
-	EXISTS	--以下の相関サブクエリに存在しない
+	EXISTS	--以下の相関サブクエリに存在
 	(
 		SELECT	--サブクエリ
 			*	--全ての情報
