@@ -1,0 +1,23 @@
+chapter4−1−3
+
+月間売り上げテーブル(sales)を新規に作成しましょう。
+
+
+workbook=# \d sales
+                  Table "public.sales"
+ Column  |     Type     | Collation | Nullable | Default
+---------+--------------+-----------+----------+---------
+ s_id    | character(5) |           | not null |
+ s_date  | character(7) |           | not null |
+ s_value | integer      |           |          |
+Indexes:
+    "sales_pkey" PRIMARY KEY, btree (s_id, s_date)
+
+workbook=#
+
+CREATE TABLE public.sales (			--salesテーブルを作成
+    s_id character(5) NOT NULL,		--カラムs_idを定義
+    s_date character(7) NOT NULL,	--カラムs_dateを定義
+    s_value integer,				--カラムs_valueを定義
+	PRIMARY KEY (s_id, s_date)		--主キーにs_id, s_dateを設定
+);
