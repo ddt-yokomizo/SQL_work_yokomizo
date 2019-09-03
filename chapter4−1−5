@@ -1,0 +1,39 @@
+chapter4−1−5
+
+以下は
+貸出記録テーブル(rental)を新規に作成するDDLですが2点の間違いがあります
+指摘して修正してください。
+
+CREATE TABLE INTO
+	rental
+	(
+		id INT AUTO_INCREMENT , PRIMARY KEY,
+		iser_id CHAR(7),
+		isbn CHAR(13),
+		rental_date DATE,
+		returned SMALLINT DEFAULT 0
+	)
+;
+
+①CREATE TABLEの後に"INTO"が不要
+②AUTO_INCREMENTの後にカンマ","が不要
+
+【正しいSQL】
+postgresなのでシーケンスを別途作成
+
+CREATE TABLE public.rental (
+    id integer NOT NULL,
+    user_id character(7),
+    isbn character(13),
+    rental_date date,
+    returned smallint DEFAULT 0,
+	PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE public.rental_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
