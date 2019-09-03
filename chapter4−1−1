@@ -1,0 +1,23 @@
+chapter4−1−1
+
+著者情報テーブル(author)を新規に作成しましょう。
+
+workbook=# \d author
+                        Table "public.author"
+  Column   |          Type          | Collation | Nullable | Default
+-----------+------------------------+-----------+----------+---------
+ author_id | character(5)           |           | not null |
+ name      | character varying(30)  |           |          |
+ name_kana | character varying(100) |           |          |
+ birth     | date                   |           |          |
+Indexes:
+    "author_pkey" PRIMARY KEY, btree (author_id)
+
+workbook=#
+
+CREATE TABLE public.author (			--authorを作成
+    author_id character(5) NOT NULL,	--著者IDを定義
+    name character varying(30),			--名前を定義
+    name_kana character varying(100),	--名前(カナ)を定義
+    birth date							--生年月日を定義
+);
