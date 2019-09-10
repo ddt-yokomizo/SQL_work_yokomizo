@@ -1,0 +1,29 @@
+chapter4−3−2
+
+月間売り上げテーブル(sales)をまず主キーのない状態で作成してみましょう。
+これに対して後から主キーを追加します。
+
+workbook=# \d sales;
+                  Table "public.sales"
+ Column  |     Type     | Collation | Nullable | Default
+---------+--------------+-----------+----------+---------
+ s_id    | character(5) |           | not null |
+ s_date  | character(7) |           | not null |
+ s_value | integer      |           |          |
+Indexes:
+    "sales_pkey" PRIMARY KEY, btree (s_id, s_date)
+
+workbook=#
+
+CREATE TABLE 						--テーブル作成
+sales (								--テーブル名
+    s_id character(5) NOT NULL,		--カラム：s_id
+    s_date character(7) NOT NULL,	--カラム：s_date
+    s_value integer DEFAULT 0		--カラム：s_value
+);
+
+ALTER TABLE							--テーブル更新
+	sales							--テーブル名:sales
+ADD									--追加
+	PRIMARY KEY(s_id, s_date)		--s_id, s_dateに複合主キーを追加
+;
