@@ -1,0 +1,26 @@
+chapter4−2−1
+
+貸し出し記録テーブル(rental)上に貸出日をキーにしたINDEXを作成してみましょう。
+
+workbook=# \d rental;
+                                  Table "public.rental"
+   Column    |     Type      | Collation | Nullable |              Default
+-------------+---------------+-----------+----------+------------------------------------
+ id          | integer       |           | not null | nextval('rental_id_seq'::regclass)
+ user_id     | character(7)  |           |          |
+ isbn        | character(13) |           |          |
+ rental_date | date          |           |          |
+ returned    | smallint      |           |          | 0
+Indexes:
+    "rental_pkey" PRIMARY KEY, btree (id)
+
+workbook=#
+
+CREATE INDEX			--INDEXを作成
+	ind_rental			--インデックスind_rentalを作成
+ON						--
+	rental				--rentalに
+	(
+		rental_date		__キーrental_date
+	)
+;
