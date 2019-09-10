@@ -1,0 +1,139 @@
+chapter4−3−3
+
+書籍情報テーブル(books)のcategory_idの後方にsales列(INT型)を追加してみましょう。
+
+workbook=# \d books;
+                            Table "public.books"
+    Column    |          Type          | Collation | Nullable |   Default
+--------------+------------------------+-----------+----------+-------------
+ isbn         | character(17)          |           | not null |
+ title        | character varying(255) |           |          |
+ price        | integer                |           |          |
+ publish      | character varying(30)  |           |          |
+ publish_date | date                   |           |          |
+ category_id  | character(5)           |           |          |
+ pages        | integer                |           |          | 0
+ rating       | character(1)           |           |          | 'B'::bpchar
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (isbn)
+
+workbook=# select * from books;
+       isbn        |        title        | price |   publish    | publish_date | category_id | pages | rating
+-------------------+---------------------+-------+--------------+--------------+-------------+-------+--------
+ 4-0010-0000-7     | かえるの観察日記    |   736 | WINGS出版    | 2013-01-15   | H9999       |     0 | B
+ 4-0010-0000-6     | あひるの観察日記    |   644 | WINGS出版    | 2012-11-15   | A9999       |     0 | B
+ 4-0010-0000-0     | ハムスターの観察    |   828 | WINGS出版    | 2010-11-01   | XXXXX       |     0 | B
+ 4-8833-0000-2     | SQLプチブック       |  1325 | 日経BP       | 2010-11-30   | XXXXX       |     0 | B
+ 4-7981-0959-2     | PEAR入門PHP         |  2760 | 翔泳社       | 2012-09-08   | P1111       |     0 | B
+ 4-7980-0945-8     | PHP5サンプル集PHP   |  2760 | 秀和システム | 2012-11-01   | P1111       |     0 | B
+ 4-7981-0722-0     | XML辞典XML          |  3036 | 翔泳社       | 2011-09-16   | X3333       |     0 | B
+ 4-7980-0522-3     | JSPリファレンスJava |  1656 | 秀和システム | 2010-04-19   | J4444       |     0 | B
+ 4-0010-0000-9     | SQL入門SQL          |  5060 | WINGS出版    | 2012-10-30   | S2222       |     0 | B
+ 4-0010-0000-1     | PHPドリルPHP        |  4692 | WINGS出版    | 2013-01-14   | P1111       |     0 | B
+ 4-8833-0000-1     | SQLリファレンスSQL  |  2070 | 日経BP       | 2013-02-15   | S2222       |     0 | B
+ 4-8833-0000-3     | XMLリファレンスXML  |  2650 | 日経BP       | 2012-11-24   | X3333       |     0 | B
+ 4-8833-0000-4     | SQLミニSQL          |   828 | 日経BP       | 2011-03-22   | S2222       |     0 | B
+(13 rows)
+
+workbook=#
+
+
+
+CREATE TABLE public.books_new (			--books_newテーブルを作成(sales列以外のテーブル定義はbooksと同一)
+    isbn character(17) NOT NULL,
+    title character varying(255),
+    price integer,
+    publish character varying(30),
+    publish_date date,
+    category_id character(5),
+	sales integer ,						--カラムsalesをcategory_idの後ろに挿入
+    pages integer DEFAULT 0,
+    rating character(1) DEFAULT 'B',
+	PRIMARY KEY (isbn)
+);
+
+workbook=# CREATE TABLE public.books_new (
+workbook(#     isbn character(17) NOT NULL,
+workbook(#     title character varying(255),
+workbook(#     price integer,
+workbook(#     publish character varying(30),
+workbook(#     publish_date date,
+workbook(#     category_id character(5),
+workbook(# sales integer ,
+workbook(#     pages integer DEFAULT 0,
+workbook(#     rating character(1) DEFAULT 'B',
+workbook(# PRIMARY KEY (isbn)
+workbook(# );
+CREATE TABLE
+workbook=#
+
+workbook=# \d books_new;
+                          Table "public.books_new"
+    Column    |          Type          | Collation | Nullable |   Default
+--------------+------------------------+-----------+----------+-------------
+ isbn         | character(17)          |           | not null |
+ title        | character varying(255) |           |          |
+ price        | integer                |           |          |
+ publish      | character varying(30)  |           |          |
+ publish_date | date                   |           |          |
+ category_id  | character(5)           |           |          |
+ sales        | integer                |           |          |
+ pages        | integer                |           |          | 0
+ rating       | character(1)           |           |          | 'B'::bpchar
+Indexes:
+    "books_new_pkey" PRIMARY KEY, btree (isbn)
+
+workbook=#
+
+
+INSERT INTO 		--books_newにbooksテーブルのデータを移行する
+	books_new 
+	(
+		isbn ,
+		title , 
+		price , 
+		publish , 
+		publish_date , 
+		category_id , 
+		pages , 
+		rating
+	) 
+	SELECT 
+		isbn , 
+		title , 
+		price , 
+		publish , 
+		publish_date , 
+		category_id , 
+		pages , 
+		rating 
+	FROM 
+		books
+;
+
+
+workbook=# DROP TABLE books;	--元テーブルを削除
+DROP TABLE
+workbook=#
+workbook=# ALTER TABLE books_new RENAME TO books;	--books_newテーブルをリネーム
+ALTER TABLE
+workbook=#
+workbook=# select * from books;
+       isbn        |        title        | price |   publish    | publish_date | category_id | sales | pages | rating
+-------------------+---------------------+-------+--------------+--------------+-------------+-------+-------+--------
+ 4-0010-0000-7     | かえるの観察日記    |   736 | WINGS出版    | 2013-01-15   | H9999       |       |     0 | B
+ 4-0010-0000-6     | あひるの観察日記    |   644 | WINGS出版    | 2012-11-15   | A9999       |       |     0 | B
+ 4-0010-0000-0     | ハムスターの観察    |   828 | WINGS出版    | 2010-11-01   | XXXXX       |       |     0 | B
+ 4-8833-0000-2     | SQLプチブック       |  1325 | 日経BP       | 2010-11-30   | XXXXX       |       |     0 | B
+ 4-7981-0959-2     | PEAR入門PHP         |  2760 | 翔泳社       | 2012-09-08   | P1111       |       |     0 | B
+ 4-7980-0945-8     | PHP5サンプル集PHP   |  2760 | 秀和システム | 2012-11-01   | P1111       |       |     0 | B
+ 4-7981-0722-0     | XML辞典XML          |  3036 | 翔泳社       | 2011-09-16   | X3333       |       |     0 | B
+ 4-7980-0522-3     | JSPリファレンスJava |  1656 | 秀和システム | 2010-04-19   | J4444       |       |     0 | B
+ 4-0010-0000-9     | SQL入門SQL          |  5060 | WINGS出版    | 2012-10-30   | S2222       |       |     0 | B
+ 4-0010-0000-1     | PHPドリルPHP        |  4692 | WINGS出版    | 2013-01-14   | P1111       |       |     0 | B
+ 4-8833-0000-1     | SQLリファレンスSQL  |  2070 | 日経BP       | 2013-02-15   | S2222       |       |     0 | B
+ 4-8833-0000-3     | XMLリファレンスXML  |  2650 | 日経BP       | 2012-11-24   | X3333       |       |     0 | B
+ 4-8833-0000-4     | SQLミニSQL          |   828 | 日経BP       | 2011-03-22   | S2222       |       |     0 | B
+(13 rows)
+
+workbook=#
