@@ -1,0 +1,46 @@
+chapter4−3−1
+
+書籍情報テーブル(books)に対してpages列(INT型　DEFAULT 0)
+rating列 (char(1),DEFAULT 'B')を新たに追加してみましょう。
+
+workbook=# \d books;
+                          Table "public.books"
+    Column    |          Type          | Collation | Nullable | Default
+--------------+------------------------+-----------+----------+---------
+ isbn         | character(17)          |           | not null |
+ title        | character varying(255) |           |          |
+ price        | integer                |           |          |
+ publish      | character varying(30)  |           |          |
+ publish_date | date                   |           |          |
+ category_id  | character(5)           |           |          |
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (isbn)
+
+workbook=#
+
+
+ALTER TABLE 
+	books 
+ADD 
+	pages integer DEFAULT 0 , 
+ADD 
+	rating character(1) DEFAULT 'B'
+;
+
+
+workbook=# \d books;
+                            Table "public.books"
+    Column    |          Type          | Collation | Nullable |   Default
+--------------+------------------------+-----------+----------+-------------
+ isbn         | character(17)          |           | not null |
+ title        | character varying(255) |           |          |
+ price        | integer                |           |          |
+ publish      | character varying(30)  |           |          |
+ publish_date | date                   |           |          |
+ category_id  | character(5)           |           |          |
+ pages        | integer                |           |          | 0
+ rating       | character(1)           |           |          | 'B'::bpchar
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (isbn)
+
+workbook=#
