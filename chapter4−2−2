@@ -1,0 +1,42 @@
+chapter4−2−2
+
+注文書テーブル(order_main)上に発注日、納品日をキーにした
+複合INDEXを作成してみましょう。
+
+workbook=# \d order_main;
+                                    Table "public.order_main"
+    Column     |     Type     | Collation | Nullable |                  Default
+---------------+--------------+-----------+----------+-------------------------------------------
+ po_id         | integer      |           | not null | nextval('order_main_po_id_seq'::regclass)
+ user_id       | character(7) |           |          |
+ order_date    | date         |           |          |
+ delivery_date | date         |           |          |
+Indexes:
+    "order_main_pkey" PRIMARY KEY, btree (po_id)
+
+workbook=#
+
+CREATE INDEX		--INDEX作成
+	ind_order		--INDEX名
+ON
+	order_main		--テーブル：order_main
+	(
+	order_date,		--キー1：order_date
+	delivery_date	--キー2：delivery_date
+	)
+;
+
+
+workbook=#  \d order_main;
+                                    Table "public.order_main"
+    Column     |     Type     | Collation | Nullable |                  Default
+---------------+--------------+-----------+----------+-------------------------------------------
+ po_id         | integer      |           | not null | nextval('order_main_po_id_seq'::regclass)
+ user_id       | character(7) |           |          |
+ order_date    | date         |           |          |
+ delivery_date | date         |           |          |
+Indexes:
+    "order_main_pkey" PRIMARY KEY, btree (po_id)
+    "ind_order" btree (order_date, delivery_date)
+
+workbook=#

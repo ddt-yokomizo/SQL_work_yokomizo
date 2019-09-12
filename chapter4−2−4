@@ -1,0 +1,32 @@
+chapter4−2−4
+
+以下はユーザテーブル(usr)に対して住所(都道府県、市町村、その他)で複合インデックスを作成するためのSQL命令ですが
+2点の誤りを指摘してください。
+
+CREATE　INDEX
+	ind_usr
+IN
+	usr
+	(
+	prefecture
+	city
+	o_address
+	)
+;
+
+①インデックス名の後がINになっているが正しくはON
+②複合インデックスを指定する時は指定キーの間にカンマ","を入れなければならない
+
+
+【正しいSQL】
+
+CREATE INDEX
+	ind_usr
+ON
+	usr
+	(
+	prefecture,		
+	city,
+	o_address
+	)
+;
