@@ -1,0 +1,137 @@
+chapter4−4−2
+
+社員テーブル(employee)上 社員の氏・名列それぞれ
+varchar(50)  NOT NULL
+で変更してみましょう
+
+
+masahiro:~ masahiro$ pg_dump workbook -U masahiro -s -t employee;
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.1
+-- Dumped by pg_dump version 11.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: employee; Type: TABLE; Schema: public; Owner: masahiro
+--
+
+CREATE TABLE public.employee (
+    s_id character(7) NOT NULL,
+    l_name character varying(20),
+    f_name character varying(20),
+    l_name_kana character varying(100),
+    f_name_kana character varying(100),
+    sex smallint,
+    class character varying(20),
+    depart_id character(3),
+    b_id character(7),
+    last_update date,
+    retired smallint
+);
+
+
+ALTER TABLE public.employee OWNER TO masahiro;
+
+--
+-- Name: employee employee_pkey; Type: CONSTRAINT; Schema: public; Owner: masahiro
+--
+
+ALTER TABLE ONLY public.employee
+    ADD CONSTRAINT employee_pkey PRIMARY KEY (s_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+masahiro:~ masahiro$
+
+ALTER TABLE  employee ALTER COLUMN l_name TYPE character varying(50) , ALTER COLUMN l_name SET NOT NULL, ALTER COLUMN f_name TYPE character varying(50) , ALTER COLUMN f_name SET NOT NULL;
+
+ALTER TABLE		--テーブル定義変更
+	employee		--employeeテーブル
+ALTER COLUMN	--カラム定義の変更
+	l_name TYPE character varying(50),	--l_nameをcharacter(50)に変更
+ALTER COLUMN	--カラム定義の変更
+	l_name SET NOT NULL,				--l_nameをNOT NULLに変更
+ALTER COLUMN	--カラム定義の変更
+    f_name TYPE character varying(50),	--f_nameをcharacter(50)に変更
+ALTER COLUMN	--カラム定義の変更
+	f_name SET NOT NULL					--f_nameをNOT NULLに変更
+;
+
+
+masahiro:~ masahiro$ pg_dump workbook -U masahiro -s -t employee;
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.1
+-- Dumped by pg_dump version 11.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: employee; Type: TABLE; Schema: public; Owner: masahiro
+--
+
+CREATE TABLE public.employee (
+    s_id character(7) NOT NULL,
+    l_name character varying(50) NOT NULL,
+    f_name character varying(50) NOT NULL,
+    l_name_kana character varying(100),
+    f_name_kana character varying(100),
+    sex smallint,
+    class character varying(20),
+    depart_id character(3),
+    b_id character(7),
+    last_update date,
+    retired smallint
+);
+
+
+ALTER TABLE public.employee OWNER TO masahiro;
+
+--
+-- Name: employee employee_pkey; Type: CONSTRAINT; Schema: public; Owner: masahiro
+--
+
+ALTER TABLE ONLY public.employee
+    ADD CONSTRAINT employee_pkey PRIMARY KEY (s_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+masahiro:~ masahiro$
+
+

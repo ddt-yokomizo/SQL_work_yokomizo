@@ -1,0 +1,22 @@
+chapter4−4−4
+
+以下はアクセス記録テーブル(access_log)に対してreferer列の定義を
+varchar200　NULL許可　に変更するSQL命令ですが
+2点の誤りを指摘してください。
+
+ALTER TABLE
+	access_log
+MODIFY WITH
+	referer,VARCHAR(200), NULL
+;
+
+①MODIFY句の後のWITHが不要
+②カラム再定義の構文のカラム名、データ型、制約の間に"," が記載されているが不要
+
+
+【正しい分】
+ALTER TABLE
+	access_log
+MODIFY
+	referer	VARCHAR(200) NULL
+;

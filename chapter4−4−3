@@ -1,0 +1,117 @@
+chapter4−4−3
+
+著者情報テーブル(author)上 著者名の定義を
+varchar(100)  デフォルトを空文字列
+に変更してみましょう
+
+
+masahiro:~ masahiro$ pg_dump workbook -U masahiro -s -t author;
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.1
+-- Dumped by pg_dump version 11.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: author; Type: TABLE; Schema: public; Owner: masahiro
+--
+
+CREATE TABLE public.author (
+    author_id character(5) NOT NULL,
+    name character varying(30),
+    name_kana character varying(100),
+    birth date
+);
+
+
+ALTER TABLE public.author OWNER TO masahiro;
+
+--
+-- Name: author author_pkey; Type: CONSTRAINT; Schema: public; Owner: masahiro
+--
+
+ALTER TABLE ONLY public.author
+    ADD CONSTRAINT author_pkey PRIMARY KEY (author_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+masahiro:~ masahiro$
+
+ALTER TABLE  author ALTER COLUMN name TYPE character varying(100), ALTER COLUMN name SET DEFAULT '';
+
+ALTER TABLE		--テーブル定義変更
+	author		--employeeテーブル
+ALTER COLUMN	--カラム定義の変更
+	name TYPE character varying(100),	--nameをcharacter(100)に変更
+ALTER COLUMN	--カラム定義の変更
+    name SET DEFAULT ''					--nameのデフォルト値を空文字に変更
+;
+
+masahiro:~ masahiro$ pg_dump workbook -U masahiro -s -t author;
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.1
+-- Dumped by pg_dump version 11.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: author; Type: TABLE; Schema: public; Owner: masahiro
+--
+
+CREATE TABLE public.author (
+    author_id character(5) NOT NULL,
+    name character varying(100) DEFAULT ''::character varying,
+    name_kana character varying(100),
+    birth date
+);
+
+
+ALTER TABLE public.author OWNER TO masahiro;
+
+--
+-- Name: author author_pkey; Type: CONSTRAINT; Schema: public; Owner: masahiro
+--
+
+ALTER TABLE ONLY public.author
+    ADD CONSTRAINT author_pkey PRIMARY KEY (author_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+masahiro:~ masahiro$
+
