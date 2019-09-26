@@ -1,0 +1,23 @@
+chapter4−1−2
+
+注文明細テーブル(order_desc)を新規に作成しましょう。
+
+workbook=# \d order_desc;
+                 Table "public.order_desc"
+  Column  |     Type      | Collation | Nullable | Default
+----------+---------------+-----------+----------+---------
+ po_id    | integer       |           | not null |
+ p_id     | character(10) |           | not null |
+ quantity | integer       |           |          |
+Indexes:
+    "order_desc_pkey" PRIMARY KEY, btree (po_id, p_id)
+
+workbook=#
+
+
+CREATE TABLE public.order_desc (	--order_descテーブルを作成
+    po_id integer NOT NULL,			--カラムpo_idを定義
+    p_id character(10) NOT NULL,	--カラムp_idを定義
+    quantity integer,				--カラムquantityを定義
+	primary key(po_id, p_id)		--主キーにpo_id、p_idを設定
+);

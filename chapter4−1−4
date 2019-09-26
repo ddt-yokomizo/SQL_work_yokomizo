@@ -1,0 +1,28 @@
+chapter4−1−4
+
+書籍情報テーブル(books)を新規に作成しましょう。
+
+workbook=# \d books;
+                          Table "public.books"
+    Column    |          Type          | Collation | Nullable | Default
+--------------+------------------------+-----------+----------+---------
+ isbn         | character(17)          |           | not null |
+ title        | character varying(255) |           |          |
+ price        | integer                |           |          |
+ publish      | character varying(30)  |           |          |
+ publish_date | date                   |           |          |
+ category_id  | character(5)           |           |          |
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (isbn)
+
+workbook=#
+
+CREATE TABLE public.books (			--booksテーブルを作成
+    isbn character(17) NOT NULL,	--カラムisbnを定義
+    title character varying(255),	--カラムtitleを定義
+    price integer,					--カラムpriceを定義
+    publish character varying(30),	--カラムpublishを定義
+    publish_date date,				--カラムpublish_dateを定義
+    category_id character(5),		--カラムcategory_idを定義
+	PRIMARY KEY (isbn)				--主キーにisbnを設定
+);
