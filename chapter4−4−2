@@ -62,13 +62,18 @@ ALTER TABLE ONLY public.employee
 
 masahiro:~ masahiro$
 
-ALTER TABLE  employee ALTER COLUMN l_name TYPE character varying(50), ALTER COLUMN f_name TYPE character varying(50);
+ALTER TABLE  employee ALTER COLUMN l_name TYPE character varying(50) , ALTER COLUMN l_name SET NOT NULL, ALTER COLUMN f_name TYPE character varying(50) , ALTER COLUMN f_name SET NOT NULL;
 
 ALTER TABLE		--テーブル定義変更
 	employee		--employeeテーブル
 ALTER COLUMN	--カラム定義の変更
 	l_name TYPE character varying(50),	--l_nameをcharacter(50)に変更
-    f_name TYPE character varying(50)	--f_nameをcharacter(50)に変更
+ALTER COLUMN	--カラム定義の変更
+	l_name SET NOT NULL,				--l_nameをNOT NULLに変更
+ALTER COLUMN	--カラム定義の変更
+    f_name TYPE character varying(50),	--f_nameをcharacter(50)に変更
+ALTER COLUMN	--カラム定義の変更
+	f_name SET NOT NULL					--f_nameをNOT NULLに変更
 ;
 
 
@@ -100,8 +105,8 @@ SET default_with_oids = false;
 
 CREATE TABLE public.employee (
     s_id character(7) NOT NULL,
-    l_name character varying(50),
-    f_name character varying(50),
+    l_name character varying(50) NOT NULL,
+    f_name character varying(50) NOT NULL,
     l_name_kana character varying(100),
     f_name_kana character varying(100),
     sex smallint,
@@ -128,6 +133,5 @@ ALTER TABLE ONLY public.employee
 --
 
 masahiro:~ masahiro$
-
 
 
